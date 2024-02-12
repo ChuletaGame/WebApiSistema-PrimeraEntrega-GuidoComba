@@ -45,11 +45,20 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             }
         }
 
-        public static bool ModificarProducto(Producto producto)
+        public static bool ModificarProducto(Producto producto, int id)
         {
             using (CoderContext context = new CoderContext())
             {
-                context.Productos.Add(producto);
+                Producto ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
+
+                ProductoBuscado.Id = producto.Id;
+                ProductoBuscado.Descripciones = producto.Descripciones;
+                ProductoBuscado.Costo = producto.Costo;
+                ProductoBuscado.PrecioVenta = producto.PrecioVenta;
+                ProductoBuscado.Stock = producto.Stock;
+                ProductoBuscado.IdUsuario = producto.IdUsuario;
+
+                context.Productos.Update(ProductoBuscado);
                 context.SaveChanges();
 
                 return true;

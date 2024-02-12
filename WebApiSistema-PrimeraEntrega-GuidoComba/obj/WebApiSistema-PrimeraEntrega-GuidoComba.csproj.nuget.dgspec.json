@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj": {}
+    "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj": {
+    "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
+        "projectUniqueName": "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
         "projectName": "WebApiSistema-PrimeraEntrega-GuidoComba",
-        "projectPath": "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
+        "projectPath": "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
         "packagesPath": "C:\\Users\\Guido\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\obj\\",
+        "outputPath": "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Guido\\AppData\\Roaming\\NuGet\\NuGet.Config",

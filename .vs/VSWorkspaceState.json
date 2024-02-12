@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebApiSistema-PrimeraEntrega-GuidoComba"
+    "\\WebApiSistema-PrimeraEntrega-GuidoComba",
+    "\\WebApiSistema-PrimeraEntrega-GuidoComba\\bin\\Debug",
+    "\\WebApiSistema-PrimeraEntrega-GuidoComba\\bin\\Release",
+    "\\WebApiSistema-PrimeraEntrega-GuidoComba\\obj",
+    "\\WebApiSistema-PrimeraEntrega-GuidoComba\\Service"
   ],
-  "SelectedNode": "\\WebApiSistema-PrimeraEntrega-GuidoComba",
+  "SelectedNode": "\\WebApiSistema-PrimeraEntrega-GuidoComba\\obj",
   "PreviewInSolutionExplorer": false
 }

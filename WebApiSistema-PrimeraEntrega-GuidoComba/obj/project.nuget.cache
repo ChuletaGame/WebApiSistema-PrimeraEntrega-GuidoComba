@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Ud0WYC4AfAqe5L3ShB+xLR8l2wX3SQysAhE65RXKi+Wv87DBnHe41mkTbKtd8LK5etlLqcEHoW0GxHJMnpaMg==",
+  "dgSpecHash": "JJeVvvAbVo7IrkNSrixDAxEzkN2Al6Pl42YBXCPWmi+VF7Q4cZ1GQMzE8RV/Uz4gMNZpP8ftTNSY9c22YpDPIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guido\\source\\repos\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
+  "projectFilePath": "C:\\Users\\Guido\\Documents\\GitHub\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba\\WebApiSistema-PrimeraEntrega-GuidoComba.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guido\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Guido\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
