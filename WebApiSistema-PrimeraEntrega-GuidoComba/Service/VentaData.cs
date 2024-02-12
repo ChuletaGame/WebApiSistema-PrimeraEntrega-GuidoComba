@@ -43,11 +43,18 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             }
         }
 
-        public static bool ModificarVenta(Venta venta)
+        public static bool ModificarVenta(Venta venta, int id)
         {
             using (CoderContext context = new CoderContext())
             {
-                context.Venta.Add(venta);
+                Venta VentaBuscada = context.Venta.Where(v => v.Id == id).FirstOrDefault();
+
+                
+                VentaBuscada.Comentarios = venta.Comentarios;
+                VentaBuscada.IdUsuario = venta.IdUsuario;
+                
+
+                context.Venta.Update(VentaBuscada);
                 context.SaveChanges();
 
                 return true;

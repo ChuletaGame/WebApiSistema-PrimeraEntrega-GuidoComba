@@ -51,7 +51,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             {
                 Producto ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
 
-                ProductoBuscado.Id = producto.Id;
+                
                 ProductoBuscado.Descripciones = producto.Descripciones;
                 ProductoBuscado.Costo = producto.Costo;
                 ProductoBuscado.PrecioVenta = producto.PrecioVenta;
