@@ -19,5 +19,11 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
 
             return list;
         }
+        [HttpGet("QueryParam")]
+        public IActionResult Parametros([FromQuery]string nombre, [FromQuery] string edad)
+        {
+            return base.Ok(new {parametro = new List<string> { nombre, edad } });
+        }
     }
 }
+ 

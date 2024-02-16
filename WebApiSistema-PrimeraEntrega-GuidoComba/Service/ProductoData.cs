@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
 
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
@@ -32,28 +33,42 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return productos;
         }
 
-        public  bool CrearProducto(Producto producto)
+        public  bool CrearProducto(ProductoDTO dto)
         {
-            context.Productos.Add(producto);
+            Producto p = new Producto();
+            p.Id = dto.Id;
+            p.Descripciones = dto.Descripciones;
+            p.Costo = dto.Costo;
+            p.Stock = dto.Stock;
+            p.PrecioVenta = dto.PrecioVenta;
+            p.IdUsuario = dto.IdUsuario;
+            
+
+            context.Productos.Add(p);
             context.SaveChanges();
 
             return true;
         }
 
-        public  bool ModificarProducto(Producto producto, int id)
+        public  bool ModificarProducto( int id, ProductoDTO productoDTO)
         {
-            Producto ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
+            Producto? ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
+            if (ProductoBuscado is not null)
+            {
+                ProductoBuscado.Descripciones = productoDTO.Descripciones;
+                ProductoBuscado.Costo = productoDTO.Costo;
+                ProductoBuscado.PrecioVenta = productoDTO.PrecioVenta;
+                ProductoBuscado.Stock = productoDTO.Stock;
+                ProductoBuscado.IdUsuario = productoDTO.IdUsuario;
 
-            ProductoBuscado.Descripciones = producto.Descripciones;
-            ProductoBuscado.Costo = producto.Costo;
-            ProductoBuscado.PrecioVenta = producto.PrecioVenta;
-            ProductoBuscado.Stock = producto.Stock;
-            ProductoBuscado.IdUsuario = producto.IdUsuario;
+                context.Productos.Update(ProductoBuscado);
+                context.SaveChanges();
 
-            context.Productos.Update(ProductoBuscado);
-            context.SaveChanges();
+                return true;
+            }
+            
 
-            return true;
+            return false;
         }
 
         public  bool EliminarProducto(int id)

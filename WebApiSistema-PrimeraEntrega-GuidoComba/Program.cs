@@ -21,6 +21,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba
             builder.Services.AddDbContext<CoderContext>(options => { options.UseSqlServer("Server=.;Database=coderhouse; Trusted_Connection=True;"); });
 
             builder.Services.AddScoped<UsuarioData>();
+            builder.Services.AddScoped<ProductoData>();
 
             var app = builder.Build();
 

@@ -14,7 +14,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         {
             this._usuarioData = usuarioData;
         }
-        [HttpGet]
+        [HttpGet("ListadoDeUsuarios")]
         public List<Usuario> ObtenerListadoDeUsuarios()
         {
             return this._usuarioData.ListarUsuarios();
