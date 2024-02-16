@@ -9,74 +9,61 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 {
-    public static class VentaData
+    public  class VentaData
     {
-        public static Venta ObtenerVenta(int id)
+        private CoderContext context;
+        public VentaData(CoderContext coderContext)
         {
-            using (CoderContext context = new CoderContext())
-            {
-                Venta ventaBuscado = context.Venta.Where(u => u.Id == id).FirstOrDefault();
-
-                return ventaBuscado;
-            }
-
+            this.context = coderContext;
         }
 
-        public static List<Venta> ListarVenta()
+        public  Venta ObtenerVenta(int id)
         {
-            using (CoderContext context = new CoderContext())
-            {
-                List<Venta> venta = context.Venta.ToList();
+            Venta ventaBuscado = context.Venta.Where(u => u.Id == id).FirstOrDefault();
 
-                return venta;
-            }
+            return ventaBuscado;
         }
 
-        public static bool CrearVenta(Venta venta)
+        public  List<Venta> ListarVenta()
         {
-            using (CoderContext context = new CoderContext())
+            List<Venta> venta = context.Venta.ToList();
+
+            return venta;
+        }
+
+        public  bool CrearVenta(Venta venta)
+        {
+            context.Venta.Add(venta);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public  bool ModificarVenta(Venta venta, int id)
+        {
+            Venta VentaBuscada = context.Venta.Where(v => v.Id == id).FirstOrDefault();
+
+            VentaBuscada.Comentarios = venta.Comentarios;
+            VentaBuscada.IdUsuario = venta.IdUsuario;
+            
+            context.Venta.Update(VentaBuscada);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public  bool EliminarVenta(int id)
+        {
+            Venta ventaABorrado = context.Venta.Include(p => p.ProductoVendidos).Where(v => v.Id == id).FirstOrDefault();
+
+            if (ventaABorrado is not null)
             {
-                context.Venta.Add(venta);
+                context.Venta.Remove(ventaABorrado);
                 context.SaveChanges();
-
                 return true;
             }
-        }
 
-        public static bool ModificarVenta(Venta venta, int id)
-        {
-            using (CoderContext context = new CoderContext())
-            {
-                Venta VentaBuscada = context.Venta.Where(v => v.Id == id).FirstOrDefault();
-
-                
-                VentaBuscada.Comentarios = venta.Comentarios;
-                VentaBuscada.IdUsuario = venta.IdUsuario;
-                
-
-                context.Venta.Update(VentaBuscada);
-                context.SaveChanges();
-
-                return true;
-            }
-        }
-
-        public static bool EliminarVenta(int id)
-        {
-            using (CoderContext context = new CoderContext())
-            {
-                Venta ventaABorrado = context.Venta.Include(p => p.ProductoVendidos).Where(v => v.Id == id).FirstOrDefault();
-
-                if (ventaABorrado is not null)
-                {
-                    context.Venta.Remove(ventaABorrado);
-                    context.SaveChanges();
-                    return true;
-                }
-
-                return false;
-            }
-
+            return false;
         }
     }
 }

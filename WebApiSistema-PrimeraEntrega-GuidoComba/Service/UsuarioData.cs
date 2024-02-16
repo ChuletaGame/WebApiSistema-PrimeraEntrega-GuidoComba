@@ -8,71 +8,62 @@ using System.Threading.Tasks;
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 {
-    public static class UsuarioData
+    public  class UsuarioData
     {
-        public static Usuario ObtenerUsuario(int id)
+        private CoderContext context;
+        public UsuarioData(CoderContext coderContext) 
         {
-            using (CoderContext context = new CoderContext())
-            {
-                Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
-
-                return usuarioBuscado;
-            }
+            this.context = coderContext;
         }
 
-        public static List<Usuario> ListarUsuarios()
-        {
-            using (CoderContext context = new CoderContext())
-            {
-                List<Usuario> usuarios = context.Usuarios.ToList();
 
-                return usuarios;
-            }
+        public  Usuario ObtenerUsuario(int id)
+        {
+            Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
+            return usuarioBuscado;        
         }
 
-        public static bool CrearUsuario(Usuario usuario)
+        public  List<Usuario> ListarUsuarios()
         {
-            using (CoderContext context = new CoderContext())
+            List<Usuario> usuarios = context.Usuarios.ToList();
+            return usuarios;
+        }
+
+        public  bool CrearUsuario(Usuario usuario)
+        {
+
+            context.Usuarios.Add(usuario);
+            context.SaveChanges();
+            return true;
+        }
+
+        public  bool ModificarUsuario(Usuario usuario, int id)
+        {
+
+            Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
+            
+            usuarioBuscado.Nombre = usuario.Nombre;
+            usuarioBuscado.Apellido = usuario.Apellido;
+            usuarioBuscado.Contraseña = usuario.Contraseña;
+            usuarioBuscado.NombreUsuario = usuario.NombreUsuario;
+            usuarioBuscado.Mail = usuario.Mail;
+
+            context.Usuarios.Update(usuarioBuscado);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public bool EliminarUsuario(int id)
+        {
+            Usuario usuarioBorrado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();     
+            if (usuarioBorrado is not null)
             {
-                context.Usuarios.Add(usuario);
+                context.Usuarios.Remove(usuarioBorrado);
                 context.SaveChanges();
-
                 return true;
             }
-        }
-
-        public static bool ModificarUsuario(Usuario usuario, int id)
-        {
-            using (CoderContext context = new CoderContext())
-            {
-                Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
-                
-                usuarioBuscado.Nombre = usuario.Nombre;
-                usuarioBuscado.Apellido = usuario.Apellido;
-                usuarioBuscado.Contraseña = usuario.Contraseña;
-                usuarioBuscado.NombreUsuario = usuario.NombreUsuario;
-                usuarioBuscado.Mail = usuario.Mail;
-
-                context.Usuarios.Update(usuarioBuscado);
-                context.SaveChanges();
-
-                return true;
-            }
-        }
-
-        public static bool EliminarUsuario(int id)
-        {
-            using (CoderContext context = new CoderContext())
-            {
-                Usuario usuarioBorrado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();     
-                if (usuarioBorrado is not null)
-                {
-                    context.Usuarios.Remove(usuarioBorrado);
-                    context.SaveChanges();
-                    return true;
-                }
-                return false;
-            }    
+            return false;   
         }
 
 

@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using WebApiSistema_PrimeraEntrega_GuidoComba.database;
+using WebApiSistema_PrimeraEntrega_GuidoComba.Service;
+
 namespace WebApiSistema_PrimeraEntrega_GuidoComba
 {
     public class Program
@@ -12,6 +17,10 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<CoderContext>(options => { options.UseSqlServer("Server=.;Database=coderhouse; Trusted_Connection=True;"); });
+
+            builder.Services.AddScoped<UsuarioData>();
 
             var app = builder.Build();
 
