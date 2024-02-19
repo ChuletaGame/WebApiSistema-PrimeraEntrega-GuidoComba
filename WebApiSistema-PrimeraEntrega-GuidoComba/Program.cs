@@ -22,7 +22,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba
 
             builder.Services.AddScoped<UsuarioData>();
             builder.Services.AddScoped<ProductoData>();
-
+            builder.Services.AddScoped<VentaData>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

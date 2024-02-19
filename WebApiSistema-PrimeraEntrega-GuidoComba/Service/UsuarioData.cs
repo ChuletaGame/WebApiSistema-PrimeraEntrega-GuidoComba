@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 {
@@ -29,24 +30,32 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return usuarios;
         }
 
-        public  bool CrearUsuario(Usuario usuario)
+        public  bool CrearUsuario(UsuarioDTO dto)
         {
+            Usuario u = new Usuario();
+            u.Id = dto.Id;
+            u.Nombre = dto.Nombre;
+            u.Apellido = dto.Apellido;
+            u.NombreUsuario = dto.NombreUsuario;
+            u.Contraseña = dto.Contraseña;
+            u.Mail = dto.Mail;
 
-            context.Usuarios.Add(usuario);
+            context.Usuarios.Add(u);
             context.SaveChanges();
+
             return true;
         }
 
-        public  bool ModificarUsuario(Usuario usuario, int id)
+        public  bool ModificarUsuario(int id, UsuarioDTO usuarioDTO)
         {
 
             Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
             
-            usuarioBuscado.Nombre = usuario.Nombre;
-            usuarioBuscado.Apellido = usuario.Apellido;
-            usuarioBuscado.Contraseña = usuario.Contraseña;
-            usuarioBuscado.NombreUsuario = usuario.NombreUsuario;
-            usuarioBuscado.Mail = usuario.Mail;
+            usuarioBuscado.Nombre = usuarioDTO.Nombre;
+            usuarioBuscado.Apellido = usuarioDTO.Apellido;
+            usuarioBuscado.Contraseña = usuarioDTO.Contraseña;
+            usuarioBuscado.NombreUsuario = usuarioDTO.NombreUsuario;
+            usuarioBuscado.Mail = usuarioDTO.Mail;
 
             context.Usuarios.Update(usuarioBuscado);
             context.SaveChanges();
