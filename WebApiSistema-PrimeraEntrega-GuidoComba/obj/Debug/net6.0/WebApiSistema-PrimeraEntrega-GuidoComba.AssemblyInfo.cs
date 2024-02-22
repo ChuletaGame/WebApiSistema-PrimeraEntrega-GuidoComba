@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApiSistema-PrimeraEntrega-GuidoComba")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+def9b904e8d7fd4f300822406cb460986e96bfee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApiSistema-PrimeraEntrega-GuidoComba")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApiSistema-PrimeraEntrega-GuidoComba")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -6,15 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
+using WebApiSistema_PrimeraEntrega_GuidoComba.Mapper;
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 {
     public  class UsuarioData
     {
         private CoderContext context;
-        public UsuarioData(CoderContext coderContext) 
+        private UsuarioMapper usuarioMapper;
+        public UsuarioData(CoderContext coderContext,UsuarioMapper usuarioMapper) 
         {
             this.context = coderContext;
+            this.usuarioMapper = usuarioMapper;
+        }
+
+        public UsuarioDTO ObtenerUsuarioPorNombreDeUsuario(string nombreDeUsuario)
+        {
+            return context.Usuarios.Where(p => p.NombreUsuario == nombreDeUsuario).Select(nombreDeUsuario = this.usuarioMapper.MapearToDTO());
+            //UsuarioDTO nombreDeUsuarioBuscado = context.Usuarios.Where(u => u.NombreUsuario == nombreDeUsuario).FirstOrDefault();
+            //return nombreDeUsuarioBuscado;
         }
 
 

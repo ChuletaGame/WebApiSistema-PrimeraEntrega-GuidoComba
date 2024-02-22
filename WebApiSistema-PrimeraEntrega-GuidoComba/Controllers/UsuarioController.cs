@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using WebApiSistema_PrimeraEntrega_GuidoComba.database;
 using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
 using WebApiSistema_PrimeraEntrega_GuidoComba.models;
@@ -15,6 +16,28 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         {
             this._usuarioData = usuarioData;
         }
+
+        [HttpGet("{nombreDeUsuario}")]
+        public ActionResult<UsuarioDTO> ObtenerUsuariosPorNombreDeUsuario(string nombreDeUsuario)
+        {
+            if (string.IsNullOrWhiteSpace(nombreDeUsuario))
+            {
+                return base.BadRequest(new { mensaje = "El nombre del usuario no puede estar vacio" });
+            }
+            try
+            {
+                UsuarioDTO usuarioDTO = _usuarioData.ObtenerUsuarioPorNombreDeUsuario(nombreDeUsuario);
+                return usuarioDTO;
+            }
+            catch (Exception ex)
+            {
+                return base.Conflict(new { mensaje = "No se pudo obtener el Usuario", status = HttpStatusCode.Conflict });
+            }
+            
+        }
+
+
+
         [HttpGet("ListadoDeUsuarios")]
         public List<Usuario> ObtenerListadoDeUsuarios()
         {

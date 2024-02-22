@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
+using WebApiSistema_PrimeraEntrega_GuidoComba.Mapper;
 
 
 namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
@@ -14,43 +15,45 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
     public class ProductoData
     {
         private CoderContext context;
-        public ProductoData(CoderContext coderContext)
+        private ProductoMapper productoMapper;
+        public ProductoData(CoderContext coderContext, ProductoMapper productoMapper)
         {
             this.context = coderContext;
+            this.productoMapper = productoMapper;
         }
 
-        public  Producto ObtenerProducto(int id)
+        public List<ProductoDTO> ObtenerProdcutosPorIdDeUsuario(int idUsuario)
+        {
+            return context.Productos.Where(p=>p.IdUsuario == idUsuario).Select(p=>this.productoMapper.MapearToDTO(p)).ToList();
+     
+        }
+
+
+        public Producto ObtenerProducto(int id)
         {
             Producto productoBuscado = context.Productos.Where(u => u.Id == id).FirstOrDefault();
 
             return productoBuscado;
         }
 
-        public  List<Producto> ListarProductos()
+        public List<Producto> ListarProductos()
         {
             List<Producto> productos = context.Productos.ToList();
 
             return productos;
         }
 
-        public  bool CrearProducto(ProductoDTO dto)
+        public bool CrearProducto(ProductoDTO dto)
         {
-            Producto p = new Producto();
-            p.Id = dto.Id;
-            p.Descripciones = dto.Descripciones;
-            p.Costo = dto.Costo;
-            p.Stock = dto.Stock;
-            p.PrecioVenta = dto.PrecioVenta;
-            p.IdUsuario = dto.IdUsuario;
+            Producto p =productoMapper.MapearToProdcuto(dto);
             
-
             context.Productos.Add(p);
             context.SaveChanges();
 
             return true;
         }
 
-        public  bool ModificarProducto( int id, ProductoDTO productoDTO)
+        public bool ModificarProducto( int id, ProductoDTO productoDTO)
         {
             Producto? ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
             if (ProductoBuscado is not null)
@@ -71,7 +74,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return false;
         }
 
-        public  bool EliminarProducto(int id)
+        public bool EliminarProducto(int id)
         {
             Producto productoABorrado = context.Productos.Include(p => p.ProductoVendidos).Where(p => p.Id == id).FirstOrDefault();
 
@@ -85,5 +88,14 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return false;
         }
 
+        internal void ActualizarProducto(ProductoDTO productoActual)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal ProductoDTO ObtenerProdcutosPorIdProducto(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
