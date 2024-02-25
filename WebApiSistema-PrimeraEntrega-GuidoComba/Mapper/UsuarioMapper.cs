@@ -22,7 +22,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Mapper
         public UsuarioDTO MapearToDTO(Usuario usuario)
         {
             UsuarioDTO dto = new UsuarioDTO();
-            dto.Id = dto.Id;
+            dto.Id = usuario.Id;
             dto.Nombre = usuario.Nombre;
             dto.Apellido = usuario.Apellido;
             dto.NombreUsuario = usuario.NombreUsuario;

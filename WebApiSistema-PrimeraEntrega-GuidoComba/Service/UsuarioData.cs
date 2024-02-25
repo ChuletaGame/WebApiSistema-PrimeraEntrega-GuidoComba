@@ -20,13 +20,12 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             this.usuarioMapper = usuarioMapper;
         }
 
-        public UsuarioDTO ObtenerUsuarioPorNombreDeUsuario(string nombreDeUsuario)
+       
+        public Usuario ObtenerUsuarioPorNombreDeUsuario(string nombreDeUsuario)
         {
-            return context.Usuarios.Where(p => p.NombreUsuario == nombreDeUsuario).Select(nombreDeUsuario = this.usuarioMapper.MapearToDTO());
-            //UsuarioDTO nombreDeUsuarioBuscado = context.Usuarios.Where(u => u.NombreUsuario == nombreDeUsuario).FirstOrDefault();
-            //return nombreDeUsuarioBuscado;
+            Usuario? usuarioBuscado = context.Usuarios.Where(u => u.NombreUsuario == nombreDeUsuario).FirstOrDefault();
+            return usuarioBuscado;
         }
-
 
         public  Usuario ObtenerUsuario(int id)
         {

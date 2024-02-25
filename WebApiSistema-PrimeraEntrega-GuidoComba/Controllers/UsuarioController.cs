@@ -18,7 +18,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         }
 
         [HttpGet("{nombreDeUsuario}")]
-        public ActionResult<UsuarioDTO> ObtenerUsuariosPorNombreDeUsuario(string nombreDeUsuario)
+        public ActionResult<Usuario> ObtenerUsuariosPorNombreDeUsuario(string nombreDeUsuario)
         {
             if (string.IsNullOrWhiteSpace(nombreDeUsuario))
             {
@@ -26,8 +26,8 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             }
             try
             {
-                UsuarioDTO usuarioDTO = _usuarioData.ObtenerUsuarioPorNombreDeUsuario(nombreDeUsuario);
-                return usuarioDTO;
+                Usuario usuario = _usuarioData.ObtenerUsuarioPorNombreDeUsuario(nombreDeUsuario);
+                return usuario;
             }
             catch (Exception ex)
             {
