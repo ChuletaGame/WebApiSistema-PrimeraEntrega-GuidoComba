@@ -27,6 +27,12 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return usuarioBuscado;
         }
 
+        public Usuario ObtenerUsuarioYPasswordDeUsuario(string Usuario, string Password)
+        {
+            Usuario? usuarioBuscado = context.Usuarios.Where(u => u.NombreUsuario == Usuario && u.Contraseña == Password).FirstOrDefault();
+            return usuarioBuscado;
+        }
+
         public  Usuario ObtenerUsuario(int id)
         {
             Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();

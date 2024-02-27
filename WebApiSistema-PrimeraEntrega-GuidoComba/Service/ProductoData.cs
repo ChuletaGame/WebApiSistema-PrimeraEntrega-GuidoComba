@@ -24,7 +24,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 
         public List<ProductoDTO> ObtenerProdcutosPorIdDeUsuario(int idUsuario)
         {
-            return context.Productos.Where(p=>p.IdUsuario == idUsuario).Select(p=>this.productoMapper.MapearToDTO(p)).ToList();
+            return this.context.Productos.Where(p=>p.IdUsuario == idUsuario).Select(p=>this.productoMapper.MapearToDTO(p)).ToList();
      
         }
 

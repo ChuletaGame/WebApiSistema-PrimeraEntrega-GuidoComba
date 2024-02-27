@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using WebApiSistema_PrimeraEntrega_GuidoComba.database;
 using WebApiSistema_PrimeraEntrega_GuidoComba.Service;
 
+
 namespace WebApiSistema_PrimeraEntrega_GuidoComba
 {
     public class Program
@@ -34,9 +35,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
 
             app.MapControllers();
 

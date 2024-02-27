@@ -15,6 +15,13 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         {
             this._ventaData = ventaData;
         }
+
+        [HttpGet("{idUsuario}")]
+        public List<VentaDTO> ObtenerListadoDeVentaPorId(int IdUsuario)
+        {
+            return this._ventaData.ObtenerVentasPorIdUsuario(IdUsuario);
+        }
+
         [HttpPost("{idUsuario}")]
         public IActionResult CrearVenta(int idUsuario, [FromBody] List<ProductoDTO> productos)
         {

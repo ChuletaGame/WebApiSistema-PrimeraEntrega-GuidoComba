@@ -35,6 +35,24 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             }
             
         }
+        [HttpGet("{Usuario}/{Password}")]
+        public ActionResult<Usuario> ObtenerUsuarioYPasswordDeUsuario(string Usuario, string Password)
+        {
+            if (string.IsNullOrWhiteSpace(Usuario)&& string.IsNullOrWhiteSpace(Password))
+            {
+                return base.BadRequest(new { mensaje = "El nombre del usuario no puede estar vacio" });
+            }
+            try
+            {
+                Usuario usuario = _usuarioData.ObtenerUsuarioYPasswordDeUsuario(Usuario,Password);
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                return base.Conflict(new { mensaje = "No se pudo obtener el Usuario", status = HttpStatusCode.Conflict });
+            }
+
+        }
 
 
 

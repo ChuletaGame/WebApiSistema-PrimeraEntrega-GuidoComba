@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
 using WebApiSistema_PrimeraEntrega_GuidoComba.models;
 using WebApiSistema_PrimeraEntrega_GuidoComba.Service;
@@ -16,12 +17,18 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             this._productoData = productoData;
         }
 
+        [HttpGet("{idUsuario}")]
+        public List<ProductoDTO> ObtenerProdcutosPorIdUsuario(int IdUsuario)
+        {
+            return this._productoData.ObtenerProdcutosPorIdDeUsuario(IdUsuario);
+        }
+
+
         [HttpGet("ListadoDeProductos")]
         public List<Producto> ObtenerListaDeProductos()
         {
             return this._productoData.ListarProductos();
         }
-
 
         [HttpPost("AgregadoDeProducto")]
         public IActionResult AgregarUnProducto([FromBody]ProductoDTO producto)
@@ -38,7 +45,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         }
 
         [HttpPut("ActualizarProducto")]
-        public IActionResult ModificarProducto(int id , ProductoDTO productoDTO)
+        public IActionResult ActualizarProductoPorId(int id , ProductoDTO productoDTO)
         {
             if(id > 0)
             {
