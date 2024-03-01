@@ -29,7 +29,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
                 Usuario usuario = _usuarioData.ObtenerUsuarioPorNombreDeUsuario(nombreDeUsuario);
                 return usuario;
             }
-            catch (Exception ex)
+            catch 
             {
                 return base.Conflict(new { mensaje = "No se pudo obtener el Usuario", status = HttpStatusCode.Conflict });
             }
@@ -62,7 +62,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             return this._usuarioData.ListarUsuarios();
         }
 
-        [HttpPost("AgregadoDeUsuario")]
+        [HttpPost()]
         public IActionResult AgregarUnUsuario([FromBody] UsuarioDTO usuario)
         {
             if (this._usuarioData.CrearUsuario(usuario))
@@ -76,7 +76,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
 
         }
 
-        [HttpPut("ActualizarUsuario")]
+        [HttpPut()]
         public IActionResult ModificarUsuario(int id, UsuarioDTO usuario)
         {
             if (id > 0)

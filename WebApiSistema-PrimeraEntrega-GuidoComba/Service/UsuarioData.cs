@@ -47,13 +47,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 
         public  bool CrearUsuario(UsuarioDTO dto)
         {
-            Usuario u = new Usuario();
-            u.Id = dto.Id;
-            u.Nombre = dto.Nombre;
-            u.Apellido = dto.Apellido;
-            u.NombreUsuario = dto.NombreUsuario;
-            u.Contraseña = dto.Contraseña;
-            u.Mail = dto.Mail;
+            Usuario u = usuarioMapper.MapearToUsuario(dto);
 
             context.Usuarios.Add(u);
             context.SaveChanges();

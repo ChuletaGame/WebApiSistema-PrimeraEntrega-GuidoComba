@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
 using WebApiSistema_PrimeraEntrega_GuidoComba.DTOs;
 using WebApiSistema_PrimeraEntrega_GuidoComba.models;
 using WebApiSistema_PrimeraEntrega_GuidoComba.Service;
@@ -18,9 +19,26 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         }
 
         [HttpGet("{idUsuario}")]
-        public List<ProductoDTO> ObtenerProdcutosPorIdUsuario(int IdUsuario)
+        public ActionResult<List<ProductoDTO>> ObtenerProdcutosPorIdUsuario(int IdUsuario)
         {
-            return this._productoData.ObtenerProdcutosPorIdDeUsuario(IdUsuario);
+            if (IdUsuario < 0)
+            {
+                return base.BadRequest(new {mensaje="el id no puede ser negativo" , 
+                    status = HttpStatusCode.BadRequest });
+            }
+            try
+            {
+                return this._productoData.ObtenerProdcutosPorIdDeUsuario(IdUsuario);
+            }
+            catch
+            {
+                return base.BadRequest(new
+                {
+                    mensaje = "Algo salio mal",
+                    status = HttpStatusCode.Conflict
+                });
+            }
+                
         }
 
 
@@ -35,7 +53,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         {
             if (this._productoData.CrearProducto(producto))
             {
-                return base.Ok(new {mensaje="Producto Agregado", producto });
+                return base.Ok(new {mensaje="Producto Agregado con exito", producto });
             }
             else
             {
@@ -44,23 +62,27 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             
         }
 
-        [HttpPut("ActualizarProducto")]
-        public IActionResult ActualizarProductoPorId(int id , ProductoDTO productoDTO)
+        [HttpPut()]
+        public IActionResult ActualizarProductoPorId(int id ,[FromBody] ProductoDTO productoDTO)
         {
-            if(id > 0)
+            
+            
+            if(this._productoData.ModificarProducto(id, productoDTO))
             {
-                if(this._productoData.ModificarProducto(id, productoDTO))
-                {
-                    return base.Ok(new { mensaje = "Producto Actualizado", productoDTO });
-                }
+                return base.Ok(new { mensaje = "Producto Actualizado", productoDTO });
             }
+            else
+            {
+                return base.BadRequest(new { mensaje = "El id no puede ser negativo" });
+            }
+            
 
-            return base.BadRequest(new { mensaje = "El id no puede ser negativo" });
+            
         }
          
 
 
-        [HttpDelete("BorradoDeProducto")]
+        [HttpDelete("{idProducto}")]
         public IActionResult BorrarProducto(int id)
         {
             if (id > 0)

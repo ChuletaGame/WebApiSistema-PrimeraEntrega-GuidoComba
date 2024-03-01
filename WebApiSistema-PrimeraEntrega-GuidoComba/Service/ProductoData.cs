@@ -76,7 +76,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
 
         public bool EliminarProducto(int id)
         {
-            Producto productoABorrado = context.Productos.Include(p => p.ProductoVendidos).Where(p => p.Id == id).FirstOrDefault();
+            Producto? productoABorrado = context.Productos.Include(p => p.ProductoVendidos).Where(p => p.Id == id).FirstOrDefault();
 
             if (productoABorrado is not null)
             {
