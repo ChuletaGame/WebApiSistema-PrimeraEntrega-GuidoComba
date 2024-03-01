@@ -77,17 +77,20 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         }
 
         [HttpPut()]
-        public IActionResult ModificarUsuario(int id, UsuarioDTO usuario)
+        public IActionResult ModificarUsuario( UsuarioDTO usuario)
         {
-            if (id > 0)
+            
+            if (this._usuarioData.ModificarUsuario( usuario))
             {
-                if (this._usuarioData.ModificarUsuario(id, usuario))
-                {
-                    return base.Ok(new { mensaje = "Usuario Actualizado", usuario });
-                }
+                return base.Ok(new { mensaje = "Usuario Actualizado", usuario });
             }
+            else
+            {
+                return base.BadRequest(new { mensaje = "El id no puede ser negativo" });
+            }
+            
 
-            return base.BadRequest(new { mensaje = "El id no puede ser negativo" });
+            
         }
 
 

@@ -48,7 +48,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
             return this._productoData.ListarProductos();
         }
 
-        [HttpPost("AgregadoDeProducto")]
+        [HttpPost()]
         public IActionResult AgregarUnProducto([FromBody]ProductoDTO producto)
         {
             if (this._productoData.CrearProducto(producto))

@@ -55,16 +55,17 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return true;
         }
 
-        public  bool ModificarUsuario(int id, UsuarioDTO usuarioDTO)
+        public  bool ModificarUsuario( UsuarioDTO usuarioDTO)
         {
 
-            Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
-            
-            usuarioBuscado.Nombre = usuarioDTO.Nombre;
-            usuarioBuscado.Apellido = usuarioDTO.Apellido;
-            usuarioBuscado.Contraseña = usuarioDTO.Contraseña;
-            usuarioBuscado.NombreUsuario = usuarioDTO.NombreUsuario;
-            usuarioBuscado.Mail = usuarioDTO.Mail;
+            //Usuario usuarioBuscado = context.Usuarios.Where(u => u.Id == id).FirstOrDefault();
+
+            Usuario usuarioBuscado = usuarioMapper.MapearToUsuario(usuarioDTO);
+            //usuarioBuscado.Nombre = usuarioDTO.Nombre;
+            //usuarioBuscado.Apellido = usuarioDTO.Apellido;
+            //usuarioBuscado.Contraseña = usuarioDTO.Contraseña;
+            //usuarioBuscado.NombreUsuario = usuarioDTO.NombreUsuario;
+            //usuarioBuscado.Mail = usuarioDTO.Mail;
 
             context.Usuarios.Update(usuarioBuscado);
             context.SaveChanges();
