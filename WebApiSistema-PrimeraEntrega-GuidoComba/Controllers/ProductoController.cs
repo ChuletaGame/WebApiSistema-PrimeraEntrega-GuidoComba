@@ -63,11 +63,11 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
         }
 
         [HttpPut()]
-        public IActionResult ActualizarProductoPorId(int id ,[FromBody] ProductoDTO productoDTO)
+        public IActionResult ActualizarProductoPorId([FromBody] ProductoDTO productoDTO)
         {
             
             
-            if(this._productoData.ModificarProducto(id, productoDTO))
+            if(this._productoData.ModificarProducto( productoDTO))
             {
                 return base.Ok(new { mensaje = "Producto Actualizado", productoDTO });
             }
@@ -82,7 +82,7 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Controllers
          
 
 
-        [HttpDelete("{idProducto}")]
+        [HttpDelete("{id}")]
         public IActionResult BorrarProducto(int id)
         {
             if (id > 0)

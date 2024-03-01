@@ -53,16 +53,16 @@ namespace WebApiSistema_PrimeraEntrega_GuidoComba.Service
             return true;
         }
 
-        public bool ModificarProducto( int id, ProductoDTO productoDTO)
+        public bool ModificarProducto( ProductoDTO productoDTO)
         {
-            Producto? ProductoBuscado = context.Productos.Where(p => p.Id == id).FirstOrDefault();
+            Producto? ProductoBuscado = productoMapper.MapearToProdcuto(productoDTO);
             if (ProductoBuscado is not null)
             {
-                ProductoBuscado.Descripciones = productoDTO.Descripciones;
-                ProductoBuscado.Costo = productoDTO.Costo;
-                ProductoBuscado.PrecioVenta = productoDTO.PrecioVenta;
-                ProductoBuscado.Stock = productoDTO.Stock;
-                ProductoBuscado.IdUsuario = productoDTO.IdUsuario;
+                //ProductoBuscado.Descripciones = productoDTO.Descripciones;
+                //ProductoBuscado.Costo = productoDTO.Costo;
+                //ProductoBuscado.PrecioVenta = productoDTO.PrecioVenta;
+                //ProductoBuscado.Stock = productoDTO.Stock;
+                //ProductoBuscado.IdUsuario = productoDTO.IdUsuario;
 
                 context.Productos.Update(ProductoBuscado);
                 context.SaveChanges();
